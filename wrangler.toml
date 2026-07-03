@@ -1,0 +1,19 @@
+# Wrangler config for Cloudflare's static assets deployment.
+# This tells `wrangler deploy` (which Cloudflare Pages/Workers CI runs
+# automatically) that the static site lives at the repo root.
+#
+# The `name` field must match the project name in the Cloudflare
+# dashboard. If your Pages project is called something other than
+# "gazette", edit the name below to match.
+
+name = "gazette"
+compatibility_date = "2026-07-03"
+
+[assets]
+directory = "./"
+
+# Files starting with . or _ (e.g. .github, _headers) are automatically
+# skipped by the asset uploader. requirements.txt, README.md, and the
+# scripts/ folder will be publicly accessible, which is fine since the
+# repo is public anyway. If you want them hidden, move the served files
+# into a public/ subdirectory and change `directory` above to "./public".
