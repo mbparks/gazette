@@ -1,0 +1,17 @@
+# Cloudflare Pages headers
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+# Manifest is small and needs to update quickly when new issues land.
+/manifest.json
+  Cache-Control: public, max-age=60, s-maxage=300
+
+# Individual back issues rarely change once published.
+/backissues/*
+  Cache-Control: public, max-age=3600, s-maxage=86400
+
+# Front page: short cache so the archive stays reasonably fresh.
+/
+  Cache-Control: public, max-age=60, s-maxage=300
+
+/index.html
+  Cache-Control: public, max-age=60, s-maxage=300

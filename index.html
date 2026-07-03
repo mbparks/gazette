@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Gazette :: M.B. Parks</title>
+<meta name="description" content="Correspondence desk and back-issue archive of The Gazette, a weekly broadsheet by M.B. Parks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:        #f2e8d0;
+    --paper-shade:  #ead9b3;
+    --paper-edge:   #d9c7a0;
+    --ink:          #1a1610;
+    --ink-soft:     #4a3e2c;
+    --ink-faint:    #8a7a5c;
+    --accent:       #6b2118;
+    --rule:         #2a2318;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+    font-size: 18px;
+    line-height: 1.55;
+    background-image:
+      radial-gradient(ellipse at 20% 15%, rgba(180,140,80,0.10), transparent 55%),
+      radial-gradient(ellipse at 85% 80%, rgba(120,80,40,0.10), transparent 55%),
+      radial-gradient(ellipse at 50% 50%, rgba(255,245,220,0.35), transparent 70%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  .sheet {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 32px 40px 64px;
+    position: relative;
+  }
+
+  .top-rules {
+    border-top: 2px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 6px 0;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Playfair Display", serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .top-rules span { white-space: nowrap; }
+
+  .masthead {
+    text-align: center;
+    padding: 18px 0 8px;
+    border-bottom: 3px double var(--rule);
+    margin-bottom: 22px;
+  }
+  .masthead h1 {
+    font-family: "UnifrakturCook", "Playfair Display", serif;
+    font-weight: 700;
+    font-size: clamp(3.2rem, 8vw, 5.6rem);
+    line-height: 0.95;
+    margin: 0;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.05);
+  }
+  .masthead .kicker {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+
+  .dateline {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: "Playfair Display", serif;
+    font-size: 11.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 8px 4px;
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+    margin-bottom: 32px;
+  }
+  .dateline .center { letter-spacing: 0.28em; }
+
+  .headline {
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .headline .eyebrow {
+    font-family: "Playfair Display", serif;
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .headline h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.05;
+    margin: 0 0 6px;
+    color: var(--ink);
+  }
+  .headline .subhead {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .fleuron {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 1.3rem;
+    letter-spacing: 0.6em;
+    margin: 22px 0 18px;
+    user-select: none;
+  }
+
+  .lede {
+    font-size: 1.08rem;
+    line-height: 1.65;
+    color: var(--ink);
+    text-align: justify;
+    hyphens: auto;
+    margin: 0 auto 28px;
+    max-width: 640px;
+  }
+  .lede::first-letter {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 4.2rem;
+    float: left;
+    line-height: 0.9;
+    padding: 6px 10px 0 0;
+    color: var(--accent);
+  }
+
+  .byline {
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 24px;
+  }
+  .byline::before, .byline::after {
+    content: "";
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--ink-faint);
+    vertical-align: middle;
+    margin: 0 14px;
+  }
+
+  .correspondence {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 24px 20px;
+    background: #fbf7ea;
+    border: 1px solid var(--paper-edge);
+    box-shadow:
+      0 1px 0 rgba(0,0,0,0.03),
+      0 12px 30px -18px rgba(60,40,10,0.35),
+      inset 0 0 0 6px #fbf7ea,
+      inset 0 0 0 7px var(--paper-edge);
+    position: relative;
+  }
+  .correspondence::before, .correspondence::after {
+    content: "";
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--ink-soft);
+    opacity: 0.35;
+  }
+  .correspondence::before {
+    top: -8px; left: -8px;
+    border-right: none; border-bottom: none;
+  }
+  .correspondence::after {
+    bottom: -8px; right: -8px;
+    border-left: none; border-top: none;
+  }
+
+  .card-label {
+    text-align: center;
+    font-family: "Special Elite", "Courier New", monospace;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--ink-faint);
+  }
+
+  .form-frame {
+    background: #ffffff;
+    border: 1px solid var(--paper-edge);
+    padding: 0;
+    overflow: hidden;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .form-frame iframe {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    height: 640px;
+    border: 0;
+    background: #ffffff;
+  }
+
+  .card-footnote {
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin-top: 16px;
+  }
+
+  /* ============================================================
+     ARCHIVE / BACK ISSUES SECTION
+     ============================================================ */
+
+  .archive-divider {
+    margin: 56px 0 32px;
+    text-align: center;
+    position: relative;
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+    padding: 10px 0;
+  }
+  .archive-divider .ornament {
+    font-family: "Playfair Display", serif;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .archive-head { text-align: center; margin-bottom: 6px; }
+  .archive-head .eyebrow {
+    font-family: "Playfair Display", serif;
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .archive-head h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.05;
+    margin: 0 0 6px;
+    color: var(--ink);
+  }
+  .archive-head .subhead {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0 0 4px;
+  }
+  .archive-intro {
+    text-align: center;
+    max-width: 620px;
+    margin: 12px auto 32px;
+    color: var(--ink);
+    font-size: 1.05rem;
+  }
+
+  .archive-count {
+    text-align: center;
+    font-family: "Special Elite", "Courier New", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    min-height: 1.4em;
+  }
+
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 28px 22px;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 0 4px;
+  }
+
+  .issue {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: #fbf7ea;
+    border: 1px solid var(--paper-edge);
+    box-shadow:
+      0 1px 0 rgba(0,0,0,0.03),
+      0 10px 22px -14px rgba(60,40,10,0.35);
+    padding: 10px 10px 12px;
+    aspect-ratio: 3 / 4;
+    position: relative;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+    overflow: hidden;
+  }
+  .issue:hover,
+  .issue:focus-visible {
+    transform: translateY(-4px) rotate(-0.4deg);
+    box-shadow:
+      0 1px 0 rgba(0,0,0,0.03),
+      0 18px 32px -14px rgba(60,40,10,0.45);
+    outline: none;
+  }
+  .issue:focus-visible {
+    box-shadow:
+      0 0 0 2px var(--accent),
+      0 18px 32px -14px rgba(60,40,10,0.45);
+  }
+
+  .issue-top-rule {
+    border-top: 1.5px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 2px 0;
+    font-family: "Playfair Display", serif;
+    font-size: 6px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .issue-mast {
+    text-align: center;
+    font-family: "UnifrakturCook", "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 1.7rem;
+    line-height: 1;
+    margin: 4px 0 2px;
+    color: var(--ink);
+  }
+
+  .issue-dateline {
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    font-size: 7px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 3px 0;
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+    margin-bottom: 6px;
+  }
+
+  .issue-headline {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 0.78rem;
+    line-height: 1.05;
+    text-align: center;
+    color: var(--ink);
+    padding: 2px 2px 4px;
+    hyphens: auto;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .issue-subhead {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 0.55rem;
+    text-align: center;
+    color: var(--ink-soft);
+    padding: 0 4px 4px;
+    line-height: 1.15;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .issue-body {
+    margin-top: 4px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    flex: 1 1 auto;
+    height: 42%;
+  }
+  .issue-body .col {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(40,30,15,0.55) 2px,
+      rgba(40,30,15,0.55) 3px
+    );
+    background-size: 100% 100%;
+    opacity: 0.55;
+    border-top: 1px solid var(--ink-faint);
+  }
+
+  .issue-caption {
+    margin-top: 10px;
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .issue-caption strong {
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.14em;
+  }
+
+  .issue-wrap { display: flex; flex-direction: column; }
+
+  .issue-skeleton {
+    background: #fbf7ea;
+    border: 1px solid var(--paper-edge);
+    aspect-ratio: 3 / 4;
+    position: relative;
+    overflow: hidden;
+    opacity: 0.55;
+  }
+  .issue-skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255,245,220,0.55) 50%,
+      transparent 100%);
+    animation: skel 1.6s ease-in-out infinite;
+  }
+  @keyframes skel {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .archive-empty {
+    text-align: center;
+    padding: 40px 20px;
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    color: var(--ink-soft);
+    border: 1px dashed var(--ink-faint);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .archive-empty strong {
+    display: block;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-bottom: 8px;
+    color: var(--accent);
+  }
+
+  .colophon {
+    margin-top: 56px;
+    padding-top: 18px;
+    border-top: 3px double var(--rule);
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.9;
+  }
+  .colophon a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink-faint);
+    padding-bottom: 1px;
+  }
+  .colophon a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .sheet { padding: 20px 18px 40px; }
+    .top-rules { font-size: 10px; letter-spacing: 0.14em; }
+    .dateline { flex-direction: column; gap: 4px; text-align: center; }
+    .lede::first-letter { font-size: 3.2rem; padding: 4px 8px 0 0; }
+    .correspondence { padding: 18px 14px 16px; }
+    .form-frame iframe { height: 720px; }
+    .archive-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 22px 14px;
+    }
+    .issue-mast { font-size: 1.4rem; }
+    .issue-headline { font-size: 0.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<main class="sheet">
+
+  <div class="top-rules">
+    <span>Established MMXXV</span>
+    <span>Cumberland &middot; Mountain Maryland</span>
+    <span>Price: One Cent</span>
+  </div>
+
+  <header class="masthead">
+    <h1>The Gazette</h1>
+    <div class="kicker">A weekly broadsheet of dispatches, notes, and correspondence</div>
+  </header>
+
+  <div class="dateline">
+    <span>Vol. I &middot; No. I</span>
+    <span class="center">By Post or by Wire</span>
+    <span id="today">This Day</span>
+  </div>
+
+  <!-- ============= CORRESPONDENCE ============= -->
+
+  <section class="headline">
+    <div class="eyebrow">Correspondence Desk</div>
+    <h2>Send Word to the Editor</h2>
+    <p class="subhead">Subscriptions, letters, and other dispatches gratefully received</p>
+  </section>
+
+  <div class="fleuron">&#10086; &nbsp; &#10086; &nbsp; &#10086;</div>
+
+  <p class="lede">
+    Readers wishing to be added to the subscription rolls, to submit a letter for a future edition, or to make some other manner of inquiry are invited to fill in the card below. Every message is read by hand at the Cumberland desk, and a reply is returned by the usual channels. There is no charge, no advertisement, and no onward passage of your particulars to third parties.
+  </p>
+
+  <div class="byline">Please Complete the Card Below</div>
+
+  <div class="correspondence">
+    <div class="card-label">&#9998; &nbsp; Correspondence Card &nbsp; &#9998;</div>
+
+    <div class="form-frame">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfLrctVSWt95Mc77m4PQRQz4X7BTkiMt2Mwp-WuXvbRu7TyFw/viewform?embedded=true"
+        width="640"
+        height="464"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="Correspondence card"
+        loading="lazy">
+        Loading the correspondence card...
+      </iframe>
+    </div>
+
+    <div class="card-footnote">
+      Filed by hand, answered in kind.
+    </div>
+  </div>
+
+  <!-- ============= ARCHIVE ============= -->
+
+  <div class="archive-divider">
+    <span class="ornament">&#10086; &nbsp; The Archive &nbsp; &#10086;</span>
+  </div>
+
+  <section class="archive-head">
+    <div class="eyebrow">Back Issues</div>
+    <h2>From the Bound Volumes</h2>
+    <p class="subhead">Every past edition, filed on the shelf and available for reading</p>
+  </section>
+
+  <p class="archive-intro">
+    Below is the running index of past editions. Click any front page to read that issue in full. New editions are set every Friday morning.
+  </p>
+
+  <div class="archive-count" id="archive-count">Fetching the shelf...</div>
+
+  <div class="archive-grid" id="archive-grid" role="list">
+    <div class="issue-skeleton"></div>
+    <div class="issue-skeleton"></div>
+    <div class="issue-skeleton"></div>
+    <div class="issue-skeleton"></div>
+  </div>
+
+  <!-- ============= FOOTER ============= -->
+
+  <footer class="colophon">
+    <div>Set in Playfair Display, Cormorant Garamond, and UnifrakturCook</div>
+    <div>Printed by the Green Shoe Press &middot; <a href="https://mbparks.com/">Return to mbparks.com</a></div>
+  </footer>
+
+</main>
+
+<script>
+  // ============================================================
+  // Dateline (top of page)
+  // ============================================================
+  (function () {
+    var months = ["January","February","March","April","May","June",
+                  "July","August","September","October","November","December"];
+    var d = new Date();
+    var el = document.getElementById("today");
+    if (el) el.textContent = months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+  })();
+
+  // ============================================================
+  // Archive: fetch manifest.json (same origin, no worker)
+  // ============================================================
+  const MONTHS = ["January","February","March","April","May","June",
+                  "July","August","September","October","November","December"];
+
+  const grid = document.getElementById("archive-grid");
+  const countEl = document.getElementById("archive-count");
+
+  loadArchive();
+
+  async function loadArchive() {
+    try {
+      const res = await fetch("/manifest.json", {
+        headers: { "accept": "application/json" },
+        cache: "no-cache"
+      });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const payload = await res.json();
+      if (!payload || !Array.isArray(payload.issues)) {
+        throw new Error("Invalid manifest format");
+      }
+      renderArchive(payload);
+    } catch (err) {
+      console.error("Archive load failed:", err);
+      renderEmpty("The archive could not be loaded. Please refresh the page.");
+    }
+  }
+
+  function renderEmpty(message) {
+    grid.innerHTML = '<div class="archive-empty" style="grid-column: 1 / -1;">' +
+      '<strong>The Presses are Warming Up</strong>' +
+      escapeHtml(message) +
+      '</div>';
+    countEl.textContent = "";
+  }
+
+  function renderArchive(payload) {
+    const issues = payload.issues.slice().sort((a, b) => (a.date < b.date ? 1 : -1));
+
+    if (issues.length === 0) {
+      renderEmpty("No editions have been filed yet.");
+      return;
+    }
+
+    countEl.textContent = issues.length === 1
+      ? "One edition on the shelf"
+      : issues.length + " editions on the shelf";
+
+    const frag = document.createDocumentFragment();
+
+    issues.forEach(issue => {
+      const wrap = document.createElement("div");
+      wrap.className = "issue-wrap";
+      wrap.setAttribute("role", "listitem");
+
+      const a = document.createElement("a");
+      a.className = "issue";
+      a.href = issue.url || ("/backissues/broadsheet-" + issue.date + ".html");
+      a.setAttribute("aria-label",
+        "Read the " + fmtDate(issue.date) + " edition: " + (issue.headline || "Untitled"));
+
+      const vol = issue.volume || "";
+      const num = issue.number || "";
+      const volNo = (vol || num)
+        ? "Vol. " + (vol || "?") + " &middot; No. " + (num || "?") + " &middot; "
+        : "";
+
+      a.innerHTML =
+        '<div class="issue-top-rule">' +
+          '<span>Est. MMXXV</span>' +
+          '<span>Cumberland</span>' +
+          '<span>1&cent;</span>' +
+        '</div>' +
+        '<div class="issue-mast">The Gazette</div>' +
+        '<div class="issue-dateline">' + volNo + shortDate(issue.date) + '</div>' +
+        '<div class="issue-headline">' + escapeHtml(issue.headline || "Untitled edition") + '</div>' +
+        (issue.subhead ? '<div class="issue-subhead">' + escapeHtml(issue.subhead) + '</div>' : '') +
+        '<div class="issue-body">' +
+          '<div class="col"></div>' +
+          '<div class="col"></div>' +
+        '</div>';
+
+      const cap = document.createElement("div");
+      cap.className = "issue-caption";
+      const capVolNo = (vol || num) ? '<br>Vol. ' + (vol || "?") + ' &middot; No. ' + (num || "?") : "";
+      cap.innerHTML = '<strong>' + fmtDate(issue.date) + '</strong>' + capVolNo;
+
+      wrap.appendChild(a);
+      wrap.appendChild(cap);
+      frag.appendChild(wrap);
+    });
+
+    grid.innerHTML = "";
+    grid.appendChild(frag);
+  }
+
+  function fmtDate(iso) {
+    const p = iso.split("-");
+    return MONTHS[parseInt(p[1], 10) - 1] + " " +
+      parseInt(p[2], 10) + ", " + parseInt(p[0], 10);
+  }
+  function shortDate(iso) {
+    const p = iso.split("-");
+    return MONTHS[parseInt(p[1], 10) - 1].slice(0,3).toUpperCase() + " " +
+      parseInt(p[2], 10) + ", " + parseInt(p[0], 10);
+  }
+  function escapeHtml(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+</script>
+
+</body>
+</html>
