@@ -1,6 +1,15 @@
 {
   "version": "2.0.0",
-  "generated": "2026-07-04T00:06:18+00:00",
-  "count": 0,
-  "issues": []
+  "generated": "2026-07-04T00:07:47+00:00",
+  "count": 1,
+  "issues": [
+    {
+      "date": "2026-07-03",
+      "volume": "I",
+      "number": "I",
+      "headline": "Mike's Mountain Maryland Gazette",
+      "subhead": "The going ons of a nerd.",
+      "url": "/backissues/broadsheet-2026-07-03.html"
+    }
+  ]
 }
