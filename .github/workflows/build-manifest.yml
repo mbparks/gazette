@@ -1,0 +1,50 @@
+name: Build Manifest
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "backissues/**"
+      - "scripts/build-manifest.py"
+      - "requirements.txt"
+      - ".github/workflows/build-manifest.yml"
+  workflow_dispatch:
+
+# Prevent overlapping runs from racing on the same commit
+concurrency:
+  group: build-manifest
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build manifest.json
+        run: python scripts/build-manifest.py
+
+      - name: Commit manifest if changed
+        run: |
+          if [[ -n $(git status --porcelain manifest.json) ]]; then
+            git config user.name  "gazette-bot"
+            git config user.email "gazette-bot@users.noreply.github.com"
+            git add manifest.json
+            git commit -m "chore: rebuild manifest [skip ci]"
+            git push
+            echo "Manifest updated."
+          else
+            echo "Manifest unchanged."
+          fi
