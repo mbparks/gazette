@@ -42,7 +42,7 @@ jobs:
             git config user.name  "gazette-bot"
             git config user.email "gazette-bot@users.noreply.github.com"
             git add manifest.json
-            git commit -m "chore: rebuild manifest [skip ci]"
+            git commit -m "chore: rebuild manifest"
             git push
             echo "Manifest updated."
           else
